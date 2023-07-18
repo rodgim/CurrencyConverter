@@ -1,6 +1,8 @@
 package com.rodgim.currencyconverter.di
 
-import com.rodgim.currencyconverter.data.CurrencyApi
+import com.rodgim.currencyconverter.data.datasources.CurrencyRemoteDataSource
+import com.rodgim.currencyconverter.data.datasources.RetrofitCurrencyDataSource
+import com.rodgim.currencyconverter.data.remote.CurrencyApi
 import com.rodgim.currencyconverter.other.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -25,4 +27,10 @@ object AppModule {
     fun provideCurrencyApi(
         retrofit: Retrofit
     ): CurrencyApi = retrofit.create(CurrencyApi::class.java)
+
+    @Singleton
+    @Provides
+    fun provideCurrencyRemoteDataSource(
+        api: CurrencyApi
+    ): CurrencyRemoteDataSource = RetrofitCurrencyDataSource(api)
 }

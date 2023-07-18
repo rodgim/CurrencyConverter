@@ -1,4 +1,4 @@
-package com.rodgim.currencyconverter.data.models
+package com.rodgim.currencyconverter.data.remote.models
 
 data class CurrencyResponse(
     val base: String,
